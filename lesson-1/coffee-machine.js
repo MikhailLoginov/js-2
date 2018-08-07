@@ -34,6 +34,7 @@ function CoffeeMachine(power) {
     return (waterAmount*waterHeatCapacity*maxTemp)/power;
   };
 
+  // Rework required
   this.launch = function () {
     setTimeout(function() {
       console.log('Кофе готов!')
@@ -42,25 +43,32 @@ function CoffeeMachine(power) {
 }
 
 let machine = new CoffeeMachine(3500);
-machine.launch();
+machine.launch();  // Delete it later
 
 document.addEventListener("DOMContentLoaded", () => {
-  let addWaterBtn = document.querySelector('#addWaterBtn');
-  addWaterBtn.addEventListener('click', () => {
+
+  // Add Water button onclick handler
+  document.querySelector('#addWaterBtn').addEventListener('click', () => {
     let waterInput = document.querySelector('input[aria-label="waterAmount"]');
     let waterAmount = +waterInput.value;
     try {
       machine.addWater(waterAmount);
+
+      // Adding an alert block
       let inputForm = document.querySelector('.water-input-form');
       let successHtml = document.createElement('div');
       successHtml.className = "alert alert-success alert-dismissible fade show";
       successHtml.innerText = "Water added successfully!";
       inputForm.append(successHtml);
+      setTimeout(() => successHtml.remove(), 5000);
+
+      // Refreshing a progress bar
       let waterProgressBar = document.querySelector('.water-progressbar');
       waterProgressBar.style.width = `${machine.getWaterPercents()}%`;
       waterProgressBar.innerHTML = `${Math.floor(machine.getWaterPercents())}%`;
-      setTimeout(() => successHtml.remove(), 5000);
     } catch(err) {
+
+      // Adding an alert block
       let inputForm = document.querySelector('.water-input-form');
       let errorHtml = document.createElement('div');
       errorHtml.className = "alert alert-danger alert-dismissible fade show";
@@ -70,22 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  let addCofeeGrainsBtn = document.querySelector('#addCoffeeGrainsBtn');
-  addCofeeGrainsBtn.addEventListener('click', () => {
+  // Add Coffee Grains button onclick handler
+  document.querySelector('#addCoffeeGrainsBtn').addEventListener('click', () => {
     let coffeeGrainsInput = document.querySelector('input[aria-label="coffeeGrainsAmount"]');
     let coffeeGrainsAmount = +coffeeGrainsInput.value;
     try {
       machine.addCoffeeGrains(coffeeGrainsAmount);
+
+      // Adding an alert block
       let inputForm = document.querySelector('.coffee-grains-input-form');
       let successHtml = document.createElement('div');
       successHtml.className = "alert alert-success alert-dismissible fade show";
       successHtml.innerText = "Coffee grains added successfully!";
       inputForm.append(successHtml);
+      setTimeout(() => successHtml.remove(), 5000);
+
+      // Refreshing a progress bar
       let coffeeGrainsProgressBar = document.querySelector('.coffeegrains-progressbar');
       coffeeGrainsProgressBar.style.width = `${machine.getCoffeeGrainsPercents()}%`;
       coffeeGrainsProgressBar.innerHTML = `${Math.floor(machine.getCoffeeGrainsPercents())}%`;
-      setTimeout(() => successHtml.remove(), 5000);
+
     } catch(err) {
+
+      // Adding an alert block
       let inputForm = document.querySelector('.coffee-grains-input-form');
       let errorHtml = document.createElement('div');
       errorHtml.className = "alert alert-danger alert-dismissible fade show";
@@ -93,5 +108,5 @@ document.addEventListener("DOMContentLoaded", () => {
       inputForm.append(errorHtml);
       setTimeout(() => errorHtml.remove(), 5000);
     }
-  })
+  });
 });
