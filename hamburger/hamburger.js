@@ -6,18 +6,42 @@
 * @param stuffing    Начинка
 * @throws {HamburgerException}  При неправильном использовании
 */
-function Hamburger(size, stuffing) { ... } 
+function Hamburger(size, stuffing) {
+  if (size != "small" && size != "large") {
+      //throw Error('Wrong size data')
+      throw new HamburgerException('Wrong size data');
+  }
+  const size = SIZE_SMALL
+} 
 /* Размеры, виды начинок и добавок */
 Hamburger.SIZE_SMALL = {
-    price: "50RUR",
-    calories: "20ccal"
+    price: "50",
+    calories: "20"
 }
-Hamburger.SIZE_LARGE = ...
-Hamburger.STUFFING_CHEESE = ...
-Hamburger.STUFFING_SALAD = ...
-Hamburger.STUFFING_POTATO = ...
-Hamburger.TOPPING_MAYO = ...
-Hamburger.TOPPING_SPICE = ...
+Hamburger.SIZE_LARGE = {
+    price: "100",
+    calories: "40"
+}
+Hamburger.STUFFING_CHEESE = {
+    price: "10",
+    calories: "20"
+}
+Hamburger.STUFFING_SALAD = {
+    price: "20",
+    calories: "5"
+}
+Hamburger.STUFFING_POTATO = {
+    price: "15",
+    calories: "10"
+}
+Hamburger.TOPPING_MAYO = {
+    price: "20",
+    calories: "5"
+}
+Hamburger.TOPPING_SPICE = {
+    price: "15",
+    calories: "0"
+}
 /**
 * Добавить добавку к гамбургеру. Можно добавить несколько
 * добавок, при условии, что они разные.
