@@ -15,10 +15,13 @@ function CoffeeMachine(power) {
    * @param newAmount amount of water in milliliters
    * that you want to add into the machine
    * @throws custom error in case of not enough room
-   * for water that you want to add
+   * for water that you want to add or in case of not 
+   * correct input
   */
   this.addWater = function (newAmount) {
-    if (waterAmount + newAmount > waterLimit) {
+    if ((typeof newAmount != "number") || newAmount <= 0 || isNaN(newAmount)) {
+      throw Error('Enter correct number!')
+    } else if (waterAmount + newAmount > waterLimit) {
       throw Error('Coffee machine has no room for too much water')
     } else {
       waterAmount += newAmount;
@@ -42,7 +45,9 @@ function CoffeeMachine(power) {
    * for coffee grains that you want to add
   */
   this.addCoffeeGrains = function (newAmount) {
-    if (coffeeGrainsAmount + newAmount > coffeeGrainsLimit) {
+    if ((typeof newAmount != "number") || newAmount <= 0 || isNaN(newAmount)) {
+      throw Error('Enter correct number!')
+    } else if (coffeeGrainsAmount + newAmount > coffeeGrainsLimit) {
       throw Error('Coffee machine has no room for too much coffee grains')
     } else {
       coffeeGrainsAmount += newAmount;
