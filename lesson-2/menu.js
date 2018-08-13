@@ -29,6 +29,8 @@ Menu.prototype.render = function () {
   for (let item in this.items) {
     if (Array.isArray(this.items[item])) {
       if (this.items[item][0] == undefined) {
+        result += `<li class='menu-item' id='${item}'><a href="javascript:;">${this.items[item][1]}</a></li>`;
+      } else if (this.items[item][0] == "toggle") {
         result += `<li class='menu-item' id='${item}'><a href='#'>${this.items[item][1]}</a></li>`;
       } else {
         result += `<li class='menu-item' id='${item}'><a href='${this.items[item][0]}'>${this.items[item][1]}</a></li>`;
@@ -60,14 +62,14 @@ Menu.prototype.render = function () {
 let m_items = {
   main : ["/", "Главная"],
   catalog : ["/catalogue/", "Каталог"],
-  gallery : ["/gallery/", "Галерея"],
-  promo : [, "Промоакции"],
+  gallery : [, "Галерея"],
+  promo : ["toggle", "Промоакции"],
   promo_sub : {
     discount : ["/discount/", "Скидки"],
     promo : ["/promo/", "Aкции"],
     new_production : ["/new_prods/", "Новинки"]
   },
-  private_area : [, "Личный кабинет"],
+  private_area : ["toggle", "Личный кабинет"],
   private_area_sub : {
     profile : ["/profile/", "Профайл"],
     balance : ["/balance/", "Баланс"],

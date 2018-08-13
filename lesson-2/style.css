@@ -1,0 +1,9 @@
+.gallery-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.gallery-wrapper a {
+  margin: 10px;
+}
