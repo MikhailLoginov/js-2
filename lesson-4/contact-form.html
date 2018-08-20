@@ -20,6 +20,19 @@
     .input-group-prepend {
       position: relative;
     }
+
+    .dropdown-menu {
+      width: 600px;
+      position: absolute;
+      will-change: transform;
+      top: 0px;
+      left: -442px;
+      transform: translate3d(0px, 38px, 0px);
+    }
+
+    .dropdown-item {
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -29,12 +42,13 @@
     <input type="tel" class="form-control" placeholder="Телефон" id="phone">
     <input type="email" class="form-control" placeholder="e-mail" id="email">
     <div class="input-group">
-      <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Введите название города" v-on:keyup="searchCities">
-      <div class="input-group-prepend">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Введите название города"
+        v-on:keyup="searchCities" @blur="inputFocused=false">
+      <div class="input-group-prepend show">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
           v-on:click="openDropdown">Выберите город</button>
-        <div class="dropdown-menu" x-placement="bottom-start" style="width: 600px; position: absolute; will-change: transform; top: 0px; left: -442px; transform: translate3d(0px, 38px, 0px);">
-          <a class="dropdown-item" v-for="city in cities">{{city.matching_full_name}}</a>
+        <div class="dropdown-menu show" x-placement="bottom-start" v-show="inputFocused">
+          <a class="dropdown-item" v-for="city in cities" v-on:click="choiceTheCity(city.matching_full_name)">{{city.matching_full_name}}</a>
         </div>
       </div>
     </div>

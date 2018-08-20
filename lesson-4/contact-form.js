@@ -1,8 +1,8 @@
 new Vue({
   el: '#contact-form',
   data: {
-    dropdownShown: false,
-    cities: []
+    cities: [],
+    inputFocused: false
   },
   methods: {
     validateForm: function () {
@@ -46,21 +46,15 @@ new Vue({
       }
     },
     openDropdown: function () {
-      if (this.dropdownShown == false) {
+      if (this.inputFocused == false) {
         fetch('https://api.teleport.org/api/cities/').then(res => {
           return res.json();
         }).then(data => {
           this.cities = data._embedded["city:search-results"];
         });
-        document.querySelector('.input-group-prepend').className += " show";
-        document.querySelector('.dropdown-menu').className += " show";
-        document.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'true');
-        this.dropdownShown = true;
+        this.inputFocused = true;
       } else {
-        document.querySelector('.input-group-prepend.show').className = "input-group-prepend";
-        document.querySelector('.dropdown-menu.show').className = "dropdown-menu";
-        document.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
-        this.dropdownShown = false;
+        this.inputFocused = false;
       }
     },
     searchCities: function () {
@@ -70,12 +64,13 @@ new Vue({
       }).then(data => {
         this.cities = data._embedded["city:search-results"];
       });
-      if (this.dropdownShown == false) {
-        document.querySelector('.input-group-prepend').className += " show";
-        document.querySelector('.dropdown-menu').className += " show";
-        document.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'true');
-        this.dropdownShown = true;
+      if (this.inputFocused == false) {
+        this.inputFocused = true;
       }
-    }
+    },
+    choiceTheCity: function(city) {
+      document.querySelector('input[aria-label="Text input with dropdown button"]').value = city;
+    },
+    
   }
 });
