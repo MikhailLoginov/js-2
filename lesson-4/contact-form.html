@@ -33,18 +33,22 @@
     .dropdown-item {
       cursor: pointer;
     }
+
+    .error {
+      border: 1px solid red;
+    }
   </style>
 </head>
 
 <body>
   <div id="contact-form">
-    <input type="text" class="form-control" placeholder="Имя" id="name">
-    <input type="tel" class="form-control" placeholder="Телефон" id="phone">
-    <input type="email" class="form-control" placeholder="e-mail" id="email">
+    <input type="text" class="form-control" placeholder="Имя" v-model="name" id="name" v-bind:class="nameValError">
+    <input type="tel" class="form-control" placeholder="Телефон" v-model="phone" id="phone" v-bind:class="phoneValError">
+    <input type="email" class="form-control" placeholder="e-mail" v-model="email" id="email" v-bind:class="emailValError">
     <div class="input-group">
       <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Введите название города"
-        v-on:keyup="searchCities" >
-      <div class="input-group-prepend show" @blur="inputFocused=false">
+        v-on:keyup="searchCities" v-model="cityName">
+      <div class="input-group-prepend show">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
           v-on:click="openDropdown">Выберите город</button>
         <div class="dropdown-menu show" x-placement="bottom-start" v-show="inputFocused">
@@ -54,6 +58,7 @@
     </div>
     <input type="text" class="form-control" placeholder="Текст" id="text">
     <button type="submit" class="btn btn-secondary" v-on:click="validate">Отправить</button>
+    <div v-bind:class="messageClass">{{messageText}}</div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script src="contact-form.js"></script>
