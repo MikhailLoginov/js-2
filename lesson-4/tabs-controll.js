@@ -12,10 +12,21 @@ new Vue({
   el: '#tab-controller',
   data: {
     currentTab: 'first-tab',
-    tabs: ['first-tab', 'second-tab', 'third-tab']
+    tabs: [{
+      id: 'first-tab',
+      name: 'First Tab'
+     },
+     {
+       id: 'second-tab',
+       name: 'Second Tab'
+     },
+     {
+       id: 'third-tab',
+       name: 'Third Tab'
+     }]
   },
   computed: {
-    getText: function () {
+    getTabID: function () {
       return this.currentTab;
     }
   }

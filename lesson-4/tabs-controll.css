@@ -1,0 +1,25 @@
+#tab-controller {
+  margin: 0 auto;
+  max-width: 600px;
+}
+.tab-text {
+  border: 1px solid grey;
+  border-top: none;
+  padding: 10px 20px;
+}
+.tab-button.active {
+  background-color: white;
+  outline: 0;
+  border-bottom: none;
+}
+button {
+  padding-bottom: 0;
+  border: 1px solid grey;
+  cursor: pointer;
+  font-size: 18px;
+  width: calc(100% / 3);
+}
+.buttons {
+  width: 100%;
+  display: flex;
+}
