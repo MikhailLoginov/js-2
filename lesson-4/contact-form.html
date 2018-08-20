@@ -43,8 +43,8 @@
     <input type="email" class="form-control" placeholder="e-mail" id="email">
     <div class="input-group">
       <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Введите название города"
-        v-on:keyup="searchCities" @blur="inputFocused=false">
-      <div class="input-group-prepend show">
+        v-on:keyup="searchCities" >
+      <div class="input-group-prepend show" @blur="inputFocused=false">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
           v-on:click="openDropdown">Выберите город</button>
         <div class="dropdown-menu show" x-placement="bottom-start" v-show="inputFocused">
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <input type="text" class="form-control" placeholder="текст" id="text">
+    <input type="text" class="form-control" placeholder="Текст" id="text">
     <button type="submit" class="btn btn-secondary" v-on:click="validate">Отправить</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
